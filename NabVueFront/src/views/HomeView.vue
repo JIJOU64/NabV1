@@ -9,7 +9,10 @@
         <v-card-subtitle class="text-h6 white--text text-center">
           Application de Bureau et Mobile Personnalisée
         </v-card-subtitle>
+        
       </v-card>
+      
+      
     </v-container>
   </v-main>
 </template>
