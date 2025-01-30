@@ -1,13 +1,16 @@
 
 <template>
-  <v-app>
+  <div class="min-h-screen flex flex-col bg-gray-100 text-gray-900">
     
-    <CrmHeader />
+    <CrmHeader class="bg-blue-500 text-white p-4" />
       
-    <router-view />
+    <main class="flex-grow p-6">
+      <router-view />
+    </main>
 
-    <CrmFooter />
-  </v-app>
+    <CrmFooter class="bg-gray-800 text-white p-4" />
+
+  </div>
 </template>
 
 <script setup>

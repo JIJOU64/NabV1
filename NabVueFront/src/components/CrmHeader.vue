@@ -1,5 +1,5 @@
 <template>
-    Header à faire avec Tailwind
+
     <img :src=imageUrlLogo alt="Logo">
     <img :imageUrlPhoto alt="Image de Fond">
   </template>
