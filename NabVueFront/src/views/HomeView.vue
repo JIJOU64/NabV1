@@ -1,10 +1,10 @@
 <template>
-  <main style="display: flex; justify-content: center; align-items: center; min-height: 100vh;">
-    <div style="text-align: center; padding: 20px; border: 1px solid #ccc; border-radius: 8px; background-color: white;">
-      <h1 style="font-size: 24px; color: black;">
+  <main class="flex items-center justify-center min-h-screen">
+    <div class="text-center p-6 border border-gray-300 rounded-lg bg-white mt-8 mb-8 mx-4 md:mx-8">
+      <h1 class="text-xl font-semibold text-black mb-4">
         Votre Univers Pro, Votre gestion Intuitive
       </h1>
-      <h2 style="font-size: 18px; color: black;">
+      <h2 class="text-lg font-medium text-black mb-6">
         Application de Bureau et Mobile Personnalisée
       </h2>
       <br>
@@ -14,6 +14,8 @@
     </div>
   </main>
 </template>
+
+
 
 
 
