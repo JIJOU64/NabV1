@@ -7,10 +7,6 @@
       <h2 class="text-lg font-medium text-black mb-6">
         Application de Bureau et Mobile Personnalisée
       </h2>
-      <br>
-      <h1 class="text-3xl font-bold underline">
-        Hello world!
-      </h1>
     </div>
   </main>
 </template>

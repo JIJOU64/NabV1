@@ -2,6 +2,9 @@
   <header v-bind="$attrs" class="p-4 flex items-center justify-between bg-blue-500 text-white">
     <div class="flex items-center space-x-2">
       <HomeIcon class="w-6 h-6 text-white" />
+      <UserCircleIcon class="w-6 h-6 text-white" />
+      
+
       <span>Accueil</span>
     </div>
     
