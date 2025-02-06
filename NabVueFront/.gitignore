@@ -30,3 +30,4 @@ coverage
 *.tsbuildinfo
 
 src/assets/images/
+src/views/Brouillon.vue
