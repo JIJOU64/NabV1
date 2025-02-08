@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <title>Application CRM</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v6.1.1/js/all.js"></script>
+</head>
+<body>
+    <header>
+        <nav class="navbar is-light" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <!-- Logo -->
+                <a class="navbar-item" href="#">
+                    <img src="{% static 'img/LogoNabiha.png' %}" alt="Logo" width="26" height="45">
+                </a>
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasic">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+            <div id="navbarBasic" class="navbar-menu">
+                <div class="navbar-end">
+                    <!-- Onglets avec icônes -->
+                    <a class="navbar-item" href="{% url 'crmapp:home' %}">
+                        <span class="icon"><i class="fa-solid fa-house"></i></span>
+                        <span>Accueil</span>
+                    </a>
+                    <a class="navbar-item" href="{% url 'crmapp:customer_choice' %}">
+                        <span class="icon"><i class="fas fa-user"></i></span>
+                        <span>Clients</span>
+                    </a>
+                    <a class="navbar-item" href="#documents">
+                        <span class="icon"><i class="fas fa-folder"></i></span>
+                        <span>Documents</span>
+                    </a>
+                    <div class="navbar-item">
+                        {% if user.is_authenticated %}
+                            <!-- Formulaire de déconnexion -->
+                            <form method="post" action="{% url 'crmapp:logout' %}" style="display: inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="button is-light" style="border: none; background: none; padding: 0;">
+                                    <span class="icon"><i class="fas fa-sign-out-alt"></i></span>
+                                    <span>Se déconnecter ({{ user.first_name }})</span>
+                                </button>
+                            </form>
+                        {% else %}
+                            <!-- Bouton Se connecter -->
+                            <a href="{% url 'crmapp:login' %}">
+                                <span class="icon"><i class="fas fa-sign-in-alt"></i></span>
+                                <span>Se connecter</span>
+                            </a>
+                        {% endif %}
+                    </div>
+
+
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div id="content">
+        {% block content %}{% endblock content %}
+    </div>
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p>
+                <strong>Contactez-nous</strong> : <a href="mailto:contact@votre-site.com">contact@votre-site.com</a>
+            </p>
+            <p>
+                <a href="#">Mentions légales</a> | <a href="#">Politique de confidentialité</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Activation du menu 'hamburger' avec javascript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const burgerIcon = document.querySelector('.navbar-burger');
+            const navbarMenu = document.getElementById(('navbarBasic'));
+
+            burgerIcon.addEventListener('click', () => {
+                // Toggle la classe 'is-active' sur le burger et le menu
+                burgerIcon.classList.toggle('is_active');
+                navbarMenu.classList.toggle('is-active');
+            });
+        });
+    </script>
+
+</body>
+</html>

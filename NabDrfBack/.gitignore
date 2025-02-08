@@ -1,0 +1,24 @@
+# virtual environment
+.venv
+
+# exclude migration file
+*/migrations/*
+# except the file  __init__.py so that the folder is recognized by Django
+!*/migrations/__init__.py
+
+db.sqlite3
+
+# tempory files
+*.pyc
+__pycache__/
+*.log
+
+#configuration files IDE
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+NabDrfBack/crmsite/crmapp/document/credentials.json

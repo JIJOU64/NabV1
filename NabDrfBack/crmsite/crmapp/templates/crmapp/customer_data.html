@@ -1,0 +1,55 @@
+{% extends 'crmapp/base.html' %}
+{% block content %}
+<section class="section">
+    <div class="container">
+        <h1 class="title has-text-centered">Informations sur le client</h1>
+        <h2 class="subtitle has-text-centered">Détails du client sélectionné</h2>
+
+        <!-- Carte de présentation des données -->
+        <div class="columns is-multiline">
+            <div class="column is-half">
+                <div class="card">
+                    <header class="card-header">
+                        <p class="card-header-title">Informations Utilisateur</p>
+                    </header>
+                    <div class="card-content">
+                        <div class="content">
+                            {% if save_error %}
+                                <p class="has-text-danger">Une erreur est survenue : aucun profil utilisateur trouvé pour cet ID.</p>
+                            {% else %}
+                                <p><strong>ID Utilisateur :</strong> {{ user.id_user }}</p>
+                                <p><strong>Nom :</strong> {{ user.last_name }}</p>
+                                <p><strong>Prénom :</strong> {{ user.first_name }}</p>
+                                <p><strong>Numéro de téléphone :</strong> {{ user.phone_number }}</p>
+                                <p><strong>Adresse :</strong> {{ user.address }}</p>
+                                <p><strong>Email :</strong> {{ user.email }}</p>
+                                <p><strong>ID Client Data :</strong> {{ user.id_client_clients_data }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="column is-half">
+                <div class="card">
+                    <header class="card-header">
+                        <p class="card-header-title">Informations Utilisateur</p>
+                    </header>
+                    <div class="card-content">
+                        <div class="content">
+                            {% if save_error %}
+                                <p class="has-text-danger">Une erreur est survenue : aucun profil utilisateur trouvé pour cet ID.</p>
+                            {% else %}
+                                <p><strong>ID Client :</strong> {{ client_data.id_client }}</p>
+                                <p><strong>Date de création :</strong> {{ client_data.file_creation_date|date:"d F Y" }}</p>
+                                <p><strong>Date de clôture :</strong> {{ client_data.file_closing_date|date:"d F Y" }}</p>
+                                <p><strong>Avancement du client :</strong> {{ client_data.id_progress_client_progress }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}
