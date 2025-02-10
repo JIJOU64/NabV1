@@ -1,21 +1,18 @@
 <template>
-  <v-main app fluid>
-    <!-- Ajout de la classe d-flex pour utiliser flexbox, justify-center pour centrer horizontalement, et align-center pour centrer verticalement -->
-    <v-container fluid class="d-flex justify-center align-center" style="min-height: 100vh;">
-      <v-card>
-        <v-card-title class="text-h4 white--text text-center">
-          Votre Univers Pro, Votre gestion Intuitive
-        </v-card-title>
-        <v-card-subtitle class="text-h6 white--text text-center">
-          Application de Bureau et Mobile Personnalisée
-        </v-card-subtitle>
-        
-      </v-card>
-      
-      
-    </v-container>
-  </v-main>
+  <main class="flex items-center justify-center min-h-screen">
+    <div class="text-center p-6 border border-gray-300 rounded-lg bg-white mt-8 mb-8 mx-4 md:mx-8">
+      <h1 class="text-xl font-semibold text-black mb-4">
+        Votre Univers Pro, Votre gestion Intuitive
+      </h1>
+      <h2 class="text-lg font-medium text-black mb-6">
+        Application de Bureau et Mobile Personnalisée
+      </h2>
+    </div>
+  </main>
 </template>
+
+
+
 
 
 <!--
@@ -65,8 +62,6 @@
 -->
 
 <script setup>
-// L'URL de l'image
-const imageUrl = new URL('@/assets/images/ImageBiasr.WebP', import.meta.url).href;
 </script>
 
 <style scoped>

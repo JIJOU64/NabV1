@@ -1,0 +1,43 @@
+{% extends 'crmapp/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<section class="section">
+    <div class="container">
+        <!-- Conteneur principal -->
+        <div class="columns">
+            <!-- Colonne gauche : Formulaire -->
+            <div class="column is-half">
+                <h1 class="title has-text-centered">Menu Client</h1>
+                <h2 class="subtitle has-text-centered">Données du client</h2>
+
+                <form action="{% url 'crmapp:customer_choice' %}" method="post">
+                    {% csrf_token %}
+                    <div class="field is-grouped is-grouped-centered" style="flex-direction: column; align-items: center;">
+                        {% crispy form %}
+                        <button type="submit" class="button is-link mt-4">Accéder</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Colonne droite : Clients récents -->
+            <div class="column is-half">
+                <h2 class="title is-4">Clients récents</h2>
+                <ul>
+                    {% for client in recent_clients %}
+                        <li>
+                            <a href="{% url 'crmapp:customer_data' user_id=client.id_user %}">
+                                {{ client.first_name }} {{ client.last_name }}
+                            </a>
+                        </li>
+                    {% empty %}
+                        <p>Aucun client récemment consulté.</p>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
+

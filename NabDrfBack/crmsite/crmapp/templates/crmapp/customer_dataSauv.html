@@ -1,0 +1,66 @@
+{% extends 'crmapp/base.html' %}
+{% block content %}
+<section class="section">
+        <div class="container">
+            <h1 class="title has-text-centered">Informations sur le client</h1>
+            <h2 class="subtitle has-text-centered">Détails du client sélectionné</h2>
+
+            <!-- Carte de présentation des données -->
+            <div class="columns is-multiline">
+                <div class="column is-half">
+                    <div class="card">
+                        <header class="card-header">
+                            <p class="card-header-title">Informations Utilisateur</p>
+                        </header>
+                        <div class="card-content">
+                            <div class="content">
+                                <p><strong>Nom : </strong> {{ user_profile.last_name }}</p>
+                                <p>Aucun profil utilisateur trouvé pour cet ID.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="column is-half">
+                    <div class="card">
+                        <header class="card-header">
+                            <p class="card-header-title">Informations Client</p>
+                        </header>
+                        <div class="card-content">
+                            <div class="content">
+                                <p><strong>Date de création : </strong> {{ client_data.file_creation_date|date:"d F Y" }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="column is-half">
+                    <div class="card">
+                        <header class="card-header">
+                            <p class="card-header-title">Informations sur la formation</p>
+                        </header>
+                        <div class="card-content">
+                            <div class="content">
+                                <p><strong>Financement par CPF :</strong> non configuré</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="column is-half">
+                    <div class="card">
+                        <header class="card-header">
+                            <p class="card-header-title">Suivi après formation</p>
+                        </header>
+                        <div class="card-content">
+                            <div class="content">
+                                <p><strong>Fiche d'évaluation :</strong> non configuré</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+{% endblock content %}
