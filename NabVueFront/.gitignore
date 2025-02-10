@@ -31,3 +31,4 @@ coverage
 
 src/assets/images/
 src/views/Brouillon.vue
+../NabDrfBack/crmsite/crmapp/document/credentials.json
