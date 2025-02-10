@@ -15,6 +15,11 @@ const router = createRouter({
       component: () => import('../views/Clients/ClientsFilter.vue')
     },
     {
+      path: '/client/choice',
+      name: 'clientchoice',
+      component: () => import('../views/Clients/ClientChoice.vue')
+    },
+    {
       path: '/about',
       name: 'about',
       // route level code-splitting
