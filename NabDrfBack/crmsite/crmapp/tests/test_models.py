@@ -1,5 +1,7 @@
 import pytest
-from crmsite.crmapp.models import ClientProgress, ClientsData
+
+#from crmsite.crmapp.models import ClientProgress, ClientsData
+
 
 @pytest.mark.django_db
 def test_create_client_progress():
