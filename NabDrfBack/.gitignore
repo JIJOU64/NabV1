@@ -22,6 +22,6 @@ __pycache__/
 *.sw?
 
 crmsite/crmapp/document/credentials.json
-crmsite/pytest.ini
+pytest.ini
 
 
