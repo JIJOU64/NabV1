@@ -120,7 +120,7 @@
       const baseUrl = urlStore.baseUrl
   
       // Récupération des données du client choisi depuis l'API DRF
-      const response = await axios.get(`${baseUrl}/crmapp/api/user-profiles/${userId}`)
+      const response = await axios.get(`${baseUrl}/crmapp/api/user-profile/${userId}`)
   
       // Log de la réponse pour vérifier son contenu
       console.log('Réponse de l\'API:', response.data)
