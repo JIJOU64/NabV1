@@ -1,5 +1,3 @@
-"""
-
 import pytest
 from rest_framework.test import APIClient
 from crmapp.models import ClientProgress
@@ -16,8 +14,7 @@ def create_client_progress(db):
 
 def test_get_client_progress_list(api_client, create_client_progress):
     #test : retrieve client progress list.
-    response = api_client.get("/api/client-progress/")
+    response = api_client.get("/crmapp/api/client-progress/")
     assert response.status_code == 200
-    #sert len(response.json()) > 0
+    assert len(response.json()) > 0
 
-"""
