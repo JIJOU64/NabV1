@@ -1,3 +1,4 @@
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.viewsets import ModelViewSet, ViewSet
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -10,7 +11,15 @@ class ClientProgressViewSet(ModelViewSet):
     queryset = ClientProgress.objects.all()
     serializer_class = ClientProgressSerializer
 
+    def get_permissions(self):
+        # we check the action
+        if self.action == 'list': # Allow access without authentication for filtering
+            return [AllowAny()]
+        # for all other actions (retrieve, create, update), authentification is required
+        return [IsAuthenticated()]
+
 class ClientFilterViewSet(ViewSet):
+    permission_classes = [AllowAny] # Allow access without authentication
 
     @action(detail=False, methods=['get'])
     def filter(self, request):
@@ -43,3 +52,9 @@ class UserProfileViewSet(ModelViewSet):
     queryset = UserProfile.objects.all()
     serializer_class = UserProfileSerializer
 
+    def get_permissions(self):
+        # Authentication is required for access to user profiles
+        if self.action in ['retrieve', 'update', 'destroy']:
+            return [IsAuthenticated()]
+        # For the list action (list profiles), you can optionally leave access open if necessary
+        return [AllowAny()]

@@ -75,7 +75,7 @@
       const baseUrl = urlStore.baseUrl
   
       // Récupération des clients depuis l'API DRF
-      const response = await axios.get(`${baseUrl}/crmapp/api/client-filter/filter`, {
+      const response = await axios.get(`${baseUrl}/api/client-filter/filter`, {
         params: { user_choice_client: userChoice.value }
       })
   

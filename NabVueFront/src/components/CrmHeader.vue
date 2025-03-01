@@ -27,14 +27,37 @@
         <DocumentIcon class="w-6 h-6 text-white" />
         <span>Documents</span>
       </router-link>
+
+      <!-- Bouton de déconnexion -->
+      <button v-if="isAuthenticated" @click="logout" class="flex items-center space-x-2">
+        <span>Déconnexion</span>
+      </button>
+      
+      <!-- Bouton de connexion -->
+      <router-link v-else to="/login" class="flex items-center space-x-2">
+        <span>Se connecter</span>
+      </router-link>
+
+
     </div>
   </header>
 </template>
 
 <script setup>
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+
+
 import { HomeIcon, UserIcon, ChartBarIcon, DocumentIcon } from '@heroicons/vue/24/outline'
 
 // Déclaration des images
 const imageUrlLogo = new URL('@/assets/images/LogoNabiha.png', import.meta.url).href
 const imageUrlPhoto = new URL('@/assets/images/ImageBiasr.WebP', import.meta.url).href
+
+const logout = () => {
+  localStorage.removeItem('authToken')
+  isAuthenticated.value = false
+  const router = useRouter
+  router.push('/login') // Rediriger vers la page connexion après la deconnexion
+}
 </script>

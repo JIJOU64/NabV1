@@ -67,7 +67,7 @@ const baseUrl = urlStore.baseUrl
 // Fonction pour récupérer les données
 const fetchClientProgress = async () => {
   try {
-    let nextUrl = `${baseUrl}/crmapp/api/client-progress/` // URL initiale
+    let nextUrl = `${baseUrl}/api/client-progress/` // URL initiale
     const allResults = [] // Tableau pour stocker tous les résultats
 
     while (nextUrl) {
