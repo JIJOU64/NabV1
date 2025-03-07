@@ -11,15 +11,7 @@ class ClientProgressViewSet(ModelViewSet):
     queryset = ClientProgress.objects.all()
     serializer_class = ClientProgressSerializer
 
-    def get_permissions(self):
-        # we check the action
-        if self.action == 'list': # Allow access without authentication for filtering
-            return [AllowAny()]
-        # for all other actions (retrieve, create, update), authentification is required
-        return [IsAuthenticated()]
-
 class ClientFilterViewSet(ViewSet):
-    permission_classes = [AllowAny] # Allow access without authentication
 
     @action(detail=False, methods=['get'])
     def filter(self, request):
@@ -51,10 +43,7 @@ class ClientFilterViewSet(ViewSet):
 class UserProfileViewSet(ModelViewSet):
     queryset = UserProfile.objects.all()
     serializer_class = UserProfileSerializer
+    permission_classes = [IsAuthenticated]
+    filterset_fields = ['last_name']
+    search_fields = ['id_client_clients_data__id_progress_client_progress__name_progress']
 
-    def get_permissions(self):
-        # Authentication is required for access to user profiles
-        if self.action in ['retrieve', 'update', 'destroy']:
-            return [IsAuthenticated()]
-        # For the list action (list profiles), you can optionally leave access open if necessary
-        return [AllowAny()]
