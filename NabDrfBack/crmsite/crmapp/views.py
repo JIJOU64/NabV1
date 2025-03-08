@@ -1,4 +1,5 @@
 from rest_framework.permissions import AllowAny, IsAuthenticated
+from .permissions import IsAdminAuthenticated
 from rest_framework.viewsets import ModelViewSet, ViewSet
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -10,6 +11,7 @@ from .serializers import ClientFilterSerializer, UserProfileSerializer, ClientPr
 class ClientProgressViewSet(ModelViewSet):
     queryset = ClientProgress.objects.all()
     serializer_class = ClientProgressSerializer
+    permission_classes = [IsAuthenticated]
 
 class ClientFilterViewSet(ViewSet):
 
@@ -43,7 +45,7 @@ class ClientFilterViewSet(ViewSet):
 class UserProfileViewSet(ModelViewSet):
     queryset = UserProfile.objects.all()
     serializer_class = UserProfileSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAdminAuthenticated]
     filterset_fields = ['last_name']
     search_fields = ['id_client_clients_data__id_progress_client_progress__name_progress']
 

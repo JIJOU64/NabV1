@@ -32,8 +32,3 @@ urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
-
-# A VIRER??
-#from django.views.generic import RedirectView
-# Redirection de la racine (/) vers /crmapp/login/
-#    path('', RedirectView.as_view(url='/crmapp/home/', permanent=False)),

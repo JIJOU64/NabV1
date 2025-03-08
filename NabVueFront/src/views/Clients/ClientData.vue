@@ -118,9 +118,20 @@
     try {
       const urlStore = useUrlStore()
       const baseUrl = urlStore.baseUrl
+
+      // Récupération du token d'authentification
+      const token = localStorage.getItem('authToken')
+      console.log('Token récupéré:', token)
+      if (!token) {
+        throw new Error('Utilisateur non authentifié')
+      }
   
       // Récupération des données du client choisi depuis l'API DRF
-      const response = await axios.get(`${baseUrl}/api/user-profile/${userId}`)
+      const response = await axios.get(`${baseUrl}/api/user-profile/${userId}`, {
+        headers: {
+          Authorization:`Bearer ${token}` // Ajoute le token d'authentification dans les en-têtes
+        }
+      })
   
       // Log de la réponse pour vérifier son contenu
       console.log('Réponse de l\'API:', response.data)

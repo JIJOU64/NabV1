@@ -46,18 +46,20 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-
-
 import { HomeIcon, UserIcon, ChartBarIcon, DocumentIcon } from '@heroicons/vue/24/outline'
 
 // Déclaration des images
 const imageUrlLogo = new URL('@/assets/images/LogoNabiha.png', import.meta.url).href
 const imageUrlPhoto = new URL('@/assets/images/ImageBiasr.WebP', import.meta.url).href
 
+// Vérification si l'utilisateur est authentifié
+const isAuthenticated = ref(!!localStorage.getItem('authToken'))
+
+// Fonction de déconnexion
 const logout = () => {
   localStorage.removeItem('authToken')
   isAuthenticated.value = false
-  const router = useRouter
+  const router = useRouter()
   router.push('/login') // Rediriger vers la page connexion après la deconnexion
 }
 </script>
