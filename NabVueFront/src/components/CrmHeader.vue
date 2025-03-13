@@ -27,39 +27,40 @@
         <DocumentIcon class="w-6 h-6 text-white" />
         <span>Documents</span>
       </router-link>
-
-      <!-- Bouton de déconnexion -->
-      <button v-if="isAuthenticated" @click="logout" class="flex items-center space-x-2">
-        <span>Déconnexion</span>
-      </button>
-      
-      <!-- Bouton de connexion -->
-      <router-link v-else to="/login" class="flex items-center space-x-2">
+      <!-- Affichage de l'utilisateur ou "Se connecter" -->
+      <router-link v-if="!auth.user" to="/login" class="flex items-center space-x-2">
+        <ArrowRightCircleIcon class="w-6 h-6 text-white" />
         <span>Se connecter</span>
       </router-link>
-
-
+      <span
+       v-else
+       @click="logout"
+        class="flex items-center space-x-2 cursor-pointer hover:underline">
+        <ArrowRightCircleIcon class="w-6 h-6 text-white" />
+        <span>{{ username }}</span>
+      </span>
+    
     </div>
   </header>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
-import { HomeIcon, UserIcon, ChartBarIcon, DocumentIcon } from '@heroicons/vue/24/outline'
+import { HomeIcon, UserIcon, ChartBarIcon, DocumentIcon, ArrowRightCircleIcon  } from '@heroicons/vue/24/outline'
+import { useAuth } from '@/stores/auth'
+import { computed } from 'vue'
+
+const auth = useAuth()
+
+const username = computed(() => auth.user?.username)
+
+const logout = () => {
+  auth.logout()
+}
+
 
 // Déclaration des images
 const imageUrlLogo = new URL('@/assets/images/LogoNabiha.png', import.meta.url).href
 const imageUrlPhoto = new URL('@/assets/images/ImageBiasr.WebP', import.meta.url).href
 
-// Vérification si l'utilisateur est authentifié
-const isAuthenticated = ref(!!localStorage.getItem('authToken'))
 
-// Fonction de déconnexion
-const logout = () => {
-  localStorage.removeItem('authToken')
-  isAuthenticated.value = false
-  const router = useRouter()
-  router.push('/login') // Rediriger vers la page connexion après la deconnexion
-}
 </script>
