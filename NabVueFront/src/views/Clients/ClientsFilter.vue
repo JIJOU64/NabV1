@@ -53,6 +53,7 @@ import { ref, onMounted } from 'vue'
 import { useUrlStore } from '@/stores/urlAxios'
 import axios from 'axios'
 import { useRouter } from 'vue-router' // Pour rediriger vers une autre page
+import { useAuth } from '@/stores/auth'
 
 // Variables
 const error = ref(false) // Pour afficher une erreur en cas de problème avec la requête
@@ -63,10 +64,21 @@ const router = useRouter()
 // On accède à l'URL de base
 const urlStore = useUrlStore()
 const baseUrl = urlStore.baseUrl
+const auth = useAuth()
 
 // Fonction pour récupérer les données
 const fetchClientProgress = async () => {
   try {
+
+    // Vérification si le token d'accès est présent
+    const accessToken = auth.accessToken
+    if (!accessToken) {
+      router.push('/login')
+    }
+
+    // Ajouter le token d'accès aux en-têtes de la requête
+    axios.defaults.headers['Authorization'] = `Bearer ${accessToken}`
+
     let nextUrl = `${baseUrl}/api/client-progress/` // URL initiale
     const allResults = [] // Tableau pour stocker tous les résultats
 
