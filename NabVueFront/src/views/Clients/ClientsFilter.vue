@@ -77,7 +77,7 @@ const fetchClientProgress = async () => {
     }
 
     // Ajouter le token d'accès aux en-têtes de la requête
-    axios.defaults.headers['Authorization'] = `Bearer ${accessToken}`
+    //axios.defaults.headers['Authorization'] = `Bearer ${accessToken}`
 
     let nextUrl = `${baseUrl}/api/client-progress/` // URL initiale
     const allResults = [] // Tableau pour stocker tous les résultats

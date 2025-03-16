@@ -44,6 +44,17 @@ export const useAuth = defineStore("auth", () => {
         }
     };
 
+    const handleLogin = async (username, password) => {
+        await authenticate(username, password);
+        if (user.value) {
+            axios.defaults.headers['Authorization'] = `Bearer ${accessToken.value}`;
+            console.log("Utilisateur connecté:" , user.value);
+            return true;
+        } else {
+            return false;
+        }
+    };
+
     const logout = () => {
         user.value = null;
         accessToken.value = null;
@@ -51,13 +62,18 @@ export const useAuth = defineStore("auth", () => {
 
         localStorage.removeItem("access_token");
         localStorage.removeItem("refresh_token");
-    }
+
+        delete axios.defaults.headers['Authorization'];
+
+        console.log("utilisateur déconnecté");
+    };
 
     return {
         user,
         accessToken,
         refreshToken,
         authenticate,
+        handleLogin,
         logout
     };
 });

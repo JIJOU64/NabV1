@@ -26,6 +26,7 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useAuth } from '@/stores/auth';
+//import axios from 'axios'
 
 const username = ref('');
 const password = ref('');
@@ -33,11 +34,24 @@ const auth = useAuth();
 const router = useRouter();
 
 const handleLogin = async () => {
+  const isAuthenticated = await auth.handleLogin(username.value, password.value);
+  if (isAuthenticated) {
+    router.push('/');
+  } else {
+    alert("Utilisateur ou mot de passe invalide, veuillez recommecer")
+  }
+};
+/*
+const handleLogin = async () => {
 await auth.authenticate(username.value, password.value);  // Attendre que l'authentification soit terminée
 console.log("Utilisateur connecté: ", auth.user);
 
 if (auth.user) {
+  // Ajout  du token d'accès pour toutes les autres requêtes
+  axios.defaults.headers.common['Authorization'] = `Bearer ${auth.accessToken}`
   router.push('/'); // Rediriger vers la page d'accueil
+} else {
+  alert("Utilisateur ou mot de passe invalide, veuillez recommencer")
 }
-};
+};*/
 </script>
