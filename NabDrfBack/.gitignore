@@ -21,4 +21,7 @@ __pycache__/
 *.sln
 *.sw?
 
-NabDrfBack/crmsite/crmapp/document/credentials.json
+crmsite/crmapp/document/credentials.json
+pytest.ini
+
+

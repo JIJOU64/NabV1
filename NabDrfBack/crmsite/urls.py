@@ -16,13 +16,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.views.generic import RedirectView
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns = [
-    # Redirection de la racine (/) vers /crmapp/login/
-    path('', RedirectView.as_view(url='/crmapp/home/', permanent=False)),
+    # Redirection de la racine vers /crmapp/home/
+    path('', include('crmapp.urls')),
 
-    path('crmapp/', include('crmapp.urls')),
+    # Administration Django
     path('admin/', admin.site.urls),
+
+    # Authentification avec DRF (login/logout en développement)
     path('api-auth/', include('rest_framework.urls')),
+
+    # JWT Token (authentification)
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]

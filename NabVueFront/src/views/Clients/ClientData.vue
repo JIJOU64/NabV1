@@ -102,25 +102,34 @@
   import { useUrlStore } from '@/stores/urlAxios'
   import axios from 'axios'
   import { ref, onMounted } from 'vue'
-  import { useRoute } from 'vue-router'
+  import { useRoute, useRouter } from 'vue-router'
+  import { useAuth } from '@/stores/auth'
   
   // Accès à la route actuelle pour récupérer les paramètres
   const route = useRoute()
+  // Pour changer de page
+  const router = useRouter()
   
   console.log('Bienvenue dans la configuration de ClientData')
   // Variable réactive pour stocker les données du client sélectionné
   const selectedClient = ref(null)
   const dataClient = ref({}) // Stocker les données du client
   const error = ref(false) // Pour afficher une erreur en cas de problème avec la requête
-  
+  const auth = useAuth()
+
   // Fonction pour récupérer les données du client choisi crmapp/api/user-profiles/<int:pk>/
   const fetchDataClient = async (userId) => {
     try {
+
+      const accessToken = auth.accessToken
+      if (!accessToken) {
+        router.push('/login')
+      }
       const urlStore = useUrlStore()
       const baseUrl = urlStore.baseUrl
   
       // Récupération des données du client choisi depuis l'API DRF
-      const response = await axios.get(`${baseUrl}/crmapp/api/user-profiles/${userId}`)
+      const response = await axios.get(`${baseUrl}/api/user-profile/${userId}`)
   
       // Log de la réponse pour vérifier son contenu
       console.log('Réponse de l\'API:', response.data)
